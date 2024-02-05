@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    
+        
+                login page
+            
+    
+    </title>
+      <link rel="stylesheet" href="/static//styles/forms.css"> 
+</head>
+
+<body>
+    
+
+    
+    <!-- header code inherited from home page -->
+    <header>
+        <nav>
+          <ul>
+            <li class="home">
+              <a class="home-link" href="/templates/landing_page.html">HOME</a>
+            </li>
+            <li class="about-m"><a style="text-decoration: none; color:white;" class="about-me" href="/templates/about_me.html">ABOUT ME</a></li>
+          </ul>
+        </nav>
+      </header>
+<!-- header code inherited from home page -->
+    <form action="" method="POST">
+      <div class="form-content">
+        <legend><h1>Login to create post</h1></legend>
+        <input id="csrf_token" name="csrf_token" type="hidden" value="ImQ1NTI1ZjQ5MzQyNjFjYjg1ZmY5NjIwNjhmZTI4OTEzMWQzNGM5NTYi.ZbF3gQ.iq5KWQNPhSiN7dSDPTsSZICmB9I">
+        <input id="username" maxlength="10" minlength="3" name="username" placeholder="username" required type="text" value=""><br />
+        <input id="password" name="password" placeholder="password" required type="password" value=""><br />
+        <input id="remember_me" name="remember_me" type="checkbox" value="y">
+        <label for="remember_me">remember me</label>
+        
+        <br />
+        <input id="submit" name="submit" type="submit" value="submit"> <br />      
+
+        Don't have an account yet?
+        <span class="register"
+          ><a href="/templates/registration_form.html">register</a></span
+        >
+      </div>
+    </form>
+
+    
+</body>
+</html>

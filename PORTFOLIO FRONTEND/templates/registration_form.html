@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    
+        
+                registration page
+            
+    
+    </title>
+    <link rel="stylesheet" href="/static//styles/forms.css"> 
+</head>
+
+<body>
+    
+
+    
+<header>
+  <nav>
+    <ul>
+      <li class="home">
+        <a class="home-link" href="/templates/home.html">HOME</a>
+      </li>
+      <li class="about-me"><a style="color: white; text-decoration: none;" href="/templates/about_me.html">ABOUT ME</a> </li>
+    </ul>
+  </nav>
+</header>
+
+<form action="" method="post">
+  <div class="form-content">
+    <legend><h1>Sign Up</h1></legend>
+    <input id="csrf_token" name="csrf_token" type="hidden" value="ImQ1NTI1ZjQ5MzQyNjFjYjg1ZmY5NjIwNjhmZTI4OTEzMWQzNGM5NTYi.ZbF3_A.tzuaXz4rISYOnthGpmeuPHV8DNY">
+    
+    <input id="username" maxlength="10" minlength="3" name="username" placeholder="username" required type="text" value=""> <br />
+    <input id="email" name="email" placeholder="email" required type="text" value=""> <br />
+    <input id="password" name="password" placeholder="password" required type="password" value=""> <br />
+  <input id="password_again" name="password_again" placeholder="password again" required type="password" value="">
+    <br />
+    <fieldset>
+    <input id="checkbox" name="remember_me" type="checkbox" value="y"> <label for="checkbox">I agree with the terms of use</label>
+    </fieldset>
+
+    <br />
+    <br />
+    <input id="submit" name="submit" placeholder="REGISTER" type="submit" value="Submit"><br />
+  </div>
+</form>
+
+    
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registration page</title>
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='/styles/registration.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-menu">
+            <a  class="home" href="{{ url_for('home') }}"><button class="hm-b">HOME</button></a>
+            <a class="about-me" href="{{ url_for('about_me') }}"><button class="ab-b">ABOUT ME</button></a>
+        </div>
+        
+    </header>
+
+    <div class="form-div">
+        <form action="/register" method="POST">
+            {{ form.hidden_tag() }}
+            <legend style="color: white; font-weight: bolder; font-size: larger;">Sign up</legend>
+            {{ form.name(placeholder="name") }} 
+            {{ form.email(placeholder="email") }} 
+            {{ form.password(placeholder="enter password") }}
+            {{ form.password_again(placeholder="re-enter password") }}
+            {{ form.remember_me(class="chec") }} {{ form.remember_me.label(class="lb") }} <br>
+            {{ form.submit(value="submit registration") }} 
+        </form>
+        
+    </div>
+</body>
+</html>

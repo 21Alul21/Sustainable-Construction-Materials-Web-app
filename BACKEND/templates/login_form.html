@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        login page
+    </title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='/styles/forms.css') }}"> 
+</head>
+
+<body>
+    
+
+    
+    <!-- header code inherited from home page -->
+    <header>
+        <nav>
+          <ul>
+            <li class="home">
+              <a class="home-link" href="{{ url_for('index') }}">HOME</a>
+            </li>
+            <li class="about-m"><a style="text-decoration: none; color:white;" class="about-me" href="{{ url_for('about_me') }}">ABOUT ME</a></li>
+          </ul>
+        </nav>
+      </header>
+<!-- header code inherited from home page -->
+    <form action="" method="POST">
+      {{ form.hidden_tag() }}
+      <div class="form-content">
+        <legend><h1>Login to create post</h1></legend>
+         <input id="{{ form.username.id }}" name="{{ form.username.name }}" placeholder="username" type="text" ><br />
+        <input id="{{ form.password.id }}" name="{{ form.password.name }}" placeholder="password" type="password" ><br />
+        <input id="{{ form.remember_me.id }}" name="{{ form.remember_me.name }}" type="checkbox" value="Remember me ">
+        <label for="{{ form.remember_me.id }}">remember me</label>
+        
+        <br />
+        <input id="submit" name="{{ form.submit.name }}" type="submit" value="submit"> <br />      
+
+        Don't have an account yet?
+        <span class="register"
+          ><a href="{{ url_for('registration') }}">register</a></span
+        >
+      </div>
+    </form>
+
+    
+</body>
+</html>

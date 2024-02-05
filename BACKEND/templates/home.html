@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+
+
+    {{ title }}
+
+
+  </title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='/styles/project_home_page.css') }}">
+</head>
+
+<body>
+
+
+
+  <header>
+    <nav>
+      <ul>
+        <li class="home">
+          <a class="home-link" href="{{ url_for('index') }}">HOME</a>
+        </li>
+        <li class="about-me"><a class="about-me-button" href="{{ url_for('about_me') }}">ABOUT ME</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <ul>
+
+      <li>
+        {% for p in post %}
+
+        <div class="main-container">
+          <div class="post-1">
+            <div class="profile">
+              <div class="profile-pic"></div>
+              <div class="info">
+                User Name<br /><small>Occupation</small> <br />
+                <br />
+              </div>
+            </div>
+
+            <p>
+              {{ p.post_field }}
+            </p>
+
+          </div>
+        </div>
+        {% endfor %}
+      </li>
+
+    </ul>
+  </main>
+
+  <a href= "{{ url_for('login') }}"><button class="create-post">Create post</button></a>
+  <footer>
+    <div class="search-bar-div">
+      <input type="text" placeholder="enter search" />
+      <input type="submit" value="submit" />
+    </div>
+  </footer>
+
+
+</body>
+
+</html>

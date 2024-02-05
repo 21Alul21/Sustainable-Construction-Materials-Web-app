@@ -1,0 +1,40 @@
+{% extends 'BaseTemplate.html' %}
+
+{% block head %}
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='/styles/about_me.css') }}"> 
+        {{ super() }}
+{% endblock head %}
+
+
+{% block body %}    
+     <header>
+      <nav>
+        <ul>
+           <li> <a href="{{ url_for('index') }}">Home</a> </li>
+          <li><a href="{{ url_for('home') }}">Project</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <main>
+        <h1 style="font-size: 100px">About Me</h1>
+        <br />
+        <p style="font-size: 20px">
+          My name is Agaji, Augustine Alul, a graduate Civil Engineer, <br />
+          and software engineering student at ALX Africa.
+          I intend to <br> leaverage technology to solve the sustainability issues
+          <br />
+          faced by the construction industry, through research, <br> artificial intelligence
+          and by deploying digital applications <br> and methods.<br /><br />
+          Follow me on: <br /><br />
+          <a class="links"  href="https://github.com/21Alul21">GITHUB</a> <a class="links"  href="https://twitter.com/21alul21?s=21&t=yn-XXFnzuayE6xgWCvAc4w">X</a>
+          <a class="links" href="">LINKEDIN</a>
+        </p>
+      </main>
+      <aside>
+        <div class="inner-back"></div>
+        <div class="image-circle"></div>
+      </aside>
+    </div>
+ {% endblock body %}    

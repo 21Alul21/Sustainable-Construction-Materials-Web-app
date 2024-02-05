@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background: linear-gradient(to top right,rgb(2, 14, 0), rgb(6, 83, 94))
+}
+
+/* header styling inherited from home landing page */
+
+header{
+    width: 100%;
+    background-color:rgb(5, 43, 30);
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    border: none;
+}
+
+
+header nav ul{
+    color: white;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 250px;
+
+   }
+
+header nav ul li{
+    margin-right: 50px;
+    list-style: none;
+    border-radius: 20px;
+    background-color:rgba(191, 231, 208, 0.226);
+ }
+
+li{
+    
+    padding: 10px 30px ;
+
+}
+
+.home a{
+
+    text-decoration: none;
+    border: none;
+    color: white;
+}
+
+
+/* end of header styling inherited from home landing page */
+
+form{
+    width: 70%;
+        position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: rgb(9, 95, 91) solid;
+}
+
+.form-content{
+    width: 80%;
+    color: white;
+    
+}
+
+
+input[type="submit"], input[type="text"], input[type="email"], input[type="password"]{
+    border: none;
+    
+    outline: none;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    border: none;
+} 
+
+input[type="submit"]{
+    background-color: rgb(15, 105, 117);
+    color: white;
+
+}
+
+
+
+legend{
+    color: white;
+}
+
+.form-content .register a{
+    color: red;
+    text-decoration: none;
+}
+
+fieldset{
+border: none;
+}
+
+.about-me{
+    text-decoration: none;
+    color: white;
+}
+
+/* media querry */
+
+@media (max-width: 500px){
+    body{
+        background-color: red;
+        color: red;
+    }
+}
+
+/* media querry */
