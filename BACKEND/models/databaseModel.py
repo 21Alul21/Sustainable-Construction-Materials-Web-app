@@ -1,23 +1,20 @@
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
 
-class Users(db.Model):
+class Users(db.Model, UserMixin):
     """Class for modeling user information"""
 
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(10), nullable=False)
-    first_name = db.Column(db.String(10), nullable=False)
-    last_name = db.Column(db.String(10), nullable=False)
-    discipline = db.Column(db.String(100))
-    interest = db.Column(db.Text, nullable=False)
     email = db.Column(db.String(20), nullable=False, unique=True)
-    is_active = db.Column(db.Boolean)
+    password = db.Column(db.String(20), nullable=False)
     posts = db.relationship('Posts', backref='users', lazy=True)
     comments = db.relationship('Comments', backref='users', lazy=True)
- 
+    
+    
 
 class Posts(db.Model):
     """Class for modeling posts made by users"""

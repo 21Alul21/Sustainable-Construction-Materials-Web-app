@@ -1,15 +1,28 @@
 
-from flask import Flask, make_response, render_template, url_for, redirect, request
+from flask import Flask, render_template, url_for, redirect, request, flash
 from models.databaseModel import db, Users, Posts, Comments, Reactions
 from models.forms import RegistrationForm, LoginForm
+from flask_bcrypt import Bcrypt
+from flask_migrate import Migrate
+import os
+#from flask_login import LoginManager, login_required, login_user, logout_user,current_user
+
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'IUFGUI9FEVIDEGVIUDEGVDEVDIUUBVDSISB1121133000))'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 
 
 db.init_app(app)
+#login_manager = LoginManager(app)
+#login_manager.init_app(app)
+bcrypt = Bcrypt()
+bcrypt.init_app(app)
+migrate = Migrate(app, db)
+
+
+
 
 
 @app.route('/', strict_slashes=False)
@@ -52,7 +65,12 @@ def login():
 
     form = LoginForm()
     if form.validate_on_submit():
-        return redirect(url_for('home'))
+
+        user = Users.query.filter_by(user_name=form.username.data).first()
+        if user:
+            if bcrypt.check_password_hash(user.password, form.password.data): 
+                flash('login successful, welcome {}'.format(user.user_name))
+                return redirect(url_for('home'))
     return render_template('login_form.html', form=form)
 
 
@@ -64,6 +82,11 @@ def registration():
 
     form = RegistrationForm() 
     if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data)
+        user = Users(user_name=form.name.data, email=form.email.data, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+
         return redirect(url_for('login'))   
     return render_template('registration.html', form=form)
 
