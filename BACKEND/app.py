@@ -5,8 +5,7 @@ from models.forms import RegistrationForm, LoginForm
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 import os
-#from flask_login import LoginManager, login_required, login_user, logout_user,current_user
-
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 
 
 app = Flask(__name__)
@@ -15,15 +14,18 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI'
 
 
 db.init_app(app)
-#login_manager = LoginManager(app)
-#login_manager.init_app(app)
 bcrypt = Bcrypt()
 bcrypt.init_app(app)
 migrate = Migrate(app, db)
+login_manager = LoginManager()
 
 
-
-
+@login_manager.user_loader
+def load_user(user_id):
+    """ function that loads the user into the session
+    using their ID"""
+    user = Users.querry.get(int(user_id))
+    return user
 
 @app.route('/', strict_slashes=False)
 def index():
@@ -39,11 +41,11 @@ def about_me():
 
 
 @app.route('/create_post', strict_slashes=False)
+@login_required
 def create_post():
     """ view function that renders a template
     for creating post on the app
     """
-    
     return render_template('create_post.html')
 
 
@@ -70,6 +72,7 @@ def login():
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data): 
                 flash('login successful, welcome {}'.format(user.user_name))
+                login_user(user, remember_me=form.remember_me.data)
                 return redirect(url_for('home'))
     return render_template('login_form.html', form=form)
 
