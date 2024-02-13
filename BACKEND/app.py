@@ -9,8 +9,11 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+
+app.config['SECRET_KEY'] = 'fgegergegegegergergegee'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+#app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 
 
 db.init_app(app)
@@ -18,13 +21,14 @@ bcrypt = Bcrypt()
 bcrypt.init_app(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager()
+login_manager.init_app(app)
 
 
 @login_manager.user_loader
 def load_user(user_id):
     """ function that loads the user into the session
     using their ID"""
-    user = Users.querry.get(int(user_id))
+    user = Users.query.get(int(user_id))
     return user
 
 @app.route('/', strict_slashes=False)
@@ -41,12 +45,15 @@ def about_me():
 
 
 @app.route('/create_post', strict_slashes=False)
-@login_required
+#@login_required
 def create_post():
     """ view function that renders a template
     for creating post on the app
     """
-    return render_template('create_post.html')
+    if current_user.is_authenticated:
+        return render_template('create_post.html')
+    else:
+        return redirect(url_for('login'))
 
 
 @app.route('/home', strict_slashes=False)
@@ -72,7 +79,7 @@ def login():
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data): 
                 flash('login successful, welcome {}'.format(user.user_name))
-                login_user(user, remember_me=form.remember_me.data)
+                login_user(user, remember=form.remember_me.data)
                 return redirect(url_for('home'))
     return render_template('login_form.html', form=form)
 
@@ -94,15 +101,33 @@ def registration():
     return render_template('registration.html', form=form)
 
 
+@app.route('/delete_post/<int:post_id>', methods=['GET', 'POST'])
+def delete_post(post_id):
+    post = Posts.query.get_or_404(post_id)
+    db.session.delete(post)
+    db.session.commit()
+    return redirect(url_for('home'))
+    
+
+@app.route('/edit_post', methods=['GET', 'POST'])
+def edit_post():
+    return render_template('edit_post.html')
+
+
+
+
+
+
 @app.route('/post', strict_slashes=False, methods=['POST'])
 def post():
     
-    post = request.form['post']
-    new_post = Posts(post_field=post, user_id=2)
-    db.session.add(new_post)
-    db.session.commit()
+    if request.method == 'POST':
+        post = request.form['post']
+        new_post = Posts(post_field=post, user_id=current_user.id)
+        db.session.add(new_post)
+        db.session.commit()
     
-    return redirect(url_for('home'))
+        return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
