@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit post</title>
+</head>
+<body>
+    <form action="{{ url_for('edit_post', post_id=post.id) }}", method="post">
+        {{ form.hidden_tag() }}
+        <legend>Edit post</legend>
+        
+        {{ form.content.label }} <br>
+        {{ form.content(size=100, value=post.post_field) }}
+        {{ form.submit() }}
+    </form>
+</body>
+</html>

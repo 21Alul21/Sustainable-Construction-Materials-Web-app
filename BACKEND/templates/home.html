@@ -15,16 +15,20 @@
 </head>
 
 <body>
-
-
-
+  {% for message in get_flashed_messages() %}
+<div style="padding: 10px; background-color: yellow; color: rgb(58, 24, 5); display: flex; justify-content: center; align-items: center;">
+  {{ message }}
+</div>
+{% endfor %}
+  
   <header>
     <nav>
       <ul>
         <li class="home">
           <a class="home-link" href="{{ url_for('index') }}">HOME</a>
         </li>
-        <li class="about-me"><a class="about-me-button" href="{{ url_for('about_me') }}">ABOUT ME</a></li>
+        <li class="about-me"><a class="about-me-button" href="{{ url_for('about_me') }}">ABOUT THE AUTHOR</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
       </ul>
     </nav>
   </header>
@@ -40,7 +44,7 @@
             <div class="profile">
               <div class="profile-pic"></div>
               <div class="info">
-                User Name<br /><small>Occupation</small> <br />
+                 {{ p.users.user_name }}<br /><small>Occupation</small> <br />
                 <br />
               </div>
             </div>
@@ -48,12 +52,15 @@
             <p>
               {{ p.post_field }}
             </p>
-            <a href="{{ url_for('edit_post') }}">Edit post</a> 
+            {% if current_user.is_authenticated and current_user == p.users%}
+            <a href="{{ url_for('edit_post', post_id=p.id) }}">Edit post</a> 
             <a href="{{ url_for('delete_post', post_id=p.id) }}">Delete post</a>
+          {% endif %}
           </div>
         </div>
         {% endfor %}
       </li>
+        </div>
 
     </ul>
   </main>

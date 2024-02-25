@@ -1,7 +1,7 @@
 
 from flask import Flask, render_template, url_for, redirect, request, flash
 from models.databaseModel import db, Users, Posts, Comments, Reactions
-from models.forms import RegistrationForm, LoginForm
+from models.forms import RegistrationForm, LoginForm, EditPostForm
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 import os
@@ -10,8 +10,10 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+app.config['SECRET_KEY'] = 'fgegergegegegergergegee'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+#app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 
 
 db.init_app(app)
@@ -59,9 +61,11 @@ def home():
     """view function for the hompage
     where posts are created
     """
+    
     title = 'home page'
+    user = Users.query.all()
     post = Posts.query.order_by(Posts.id.desc()).all()
-    return render_template('home.html', title=title, post=post)
+    return render_template('home.html', title=title, post=post, user=user)
 
 
 @app.route('/login_form', strict_slashes=False, methods=['GET', 'POST'])
@@ -100,6 +104,7 @@ def registration():
 
 
 @app.route('/delete_post/<int:post_id>', methods=['GET', 'POST'])
+@login_required
 def delete_post(post_id):
     post = Posts.query.get_or_404(post_id)
     db.session.delete(post)
@@ -107,12 +112,23 @@ def delete_post(post_id):
     return redirect(url_for('home'))
     
 
-@app.route('/edit_post', methods=['GET', 'POST'])
-def edit_post():
-    return render_template('edit_post.html')
+@app.route('/edit_post/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def edit_post(post_id):
+    form = EditPostForm()
+    post = Posts.query.get_or_404(post_id)
 
 
-
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            post.post_field = form.content.data  
+            db.session.commit()
+            return redirect(url_for('home'))
+    
+    form.content.data = post.post_field
+    
+    return render_template('edit_post.html', post=post, form=form)
+        
 
 
 
@@ -126,6 +142,11 @@ def post():
         db.session.commit()
     
         return redirect(url_for('home'))
+    
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
