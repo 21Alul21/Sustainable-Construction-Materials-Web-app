@@ -3,10 +3,9 @@ from flask import Flask, render_template, url_for, redirect, request, flash
 from models.databaseModel import db, Users, Posts, Comments, Reactions
 from models.forms import RegistrationForm, LoginForm, EditPostForm
 from flask_bcrypt import Bcrypt
-from flask_migrate import Migrate
 import os
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 
@@ -20,6 +19,7 @@ db.init_app(app)
 bcrypt = Bcrypt()
 bcrypt.init_app(app)
 migrate = Migrate(app, db)
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 

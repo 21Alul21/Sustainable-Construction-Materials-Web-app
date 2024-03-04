@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -12,7 +13,7 @@ class Users(db.Model, UserMixin):
     email = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
     posts = db.relationship('Posts', backref='users', lazy=True)
-    comments = db.relationship('Comments', backref='users', lazy=True)
+    comments = db.relationship('Comments', backref='author', lazy=True)
     
     
 
@@ -23,6 +24,7 @@ class Posts(db.Model):
     post_field = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     comment = db.relationship('Comments', backref='post', lazy=True)
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return f'post - {self.post_field}, user id - {self.user_id}'
