@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+  <style>
+    header{
+        width: 80%; height: 10%; margin: auto;
+        display: flex; justify-content: center; font-weight: bolder;
+        margin-bottom: 60px;
+    }
+    form{
+        width: 90%; height: 15%; margin: auto; display: flex; 
+        flex-direction: column;
+    }
+    input{
+        margin-bottom: 8px; border: none;
+        background-color: rgb(235, 220, 230);
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .login-btn{
+        background-color: blueviolet; color: white;
+        border-radius: 10px; padding: 10px;  border: none;
+        text-decoration: none; display: block;
+    }
+
+    .sign-btn{margin:auto; width: 90%; padding: 10px; border-radius: 10px; border: solid 1px rgba(65, 4, 34, 0.801); background-color: none;
+
+    }
+    .forgot{ width: 100%; text-align: center; margin-top: 80px;
+         padding-bottom: 40px;
+    }
+
+    footer{
+        text-align: center;
+    }
+
+    main{
+        display: flex; flex-direction: column; margin-bottom: 25px;
+    }
+
+    
+  </style>
+</head>
+
+<body>
+    <div class="container">
+    <header>
+        <div>
+            <h1>Welcome Back</h1>
+            <p>Enter your credential to login</p>
+        </div>
+    </header>
+    <main>
+        <form action="">
+            <input type="text" placeholder="Username" style="display: block;">
+            <input type="text" placeholder="Email" style="display: block;">
+            <input type="text" placeholder="Password" style="display: block;">
+            <input type="text" placeholder="Confirm Password" style="display: block;">
+            <button class="login-btn">Sign Up</button>
+        </form>
+        <p style="text-align: center;">or</p>
+        <button class="sign-btn">Sign in with Google </button>
+
+    </main>
+    <footer>Alredy have an account? <span>Login</span>
+    </footer>
+</div>
+</body>
+
+</html>

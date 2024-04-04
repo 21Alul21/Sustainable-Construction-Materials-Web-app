@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+  <style>
+    header{
+        width: 80%; height: 10%; margin: auto;
+        display: flex; justify-content: center; font-weight: bolder;
+        margin-bottom: 60px;
+    }
+    form{
+        width: 90%; height: 15%; margin: auto; display: flex; 
+        flex-direction: column;
+    }
+    input{
+        margin-bottom: 8px; outline: none;
+        background-color: rgb(235, 220, 230);
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .login-btn{
+        background-color: blueviolet; color: white; padding: 10px;
+        border-radius: 10px; padding: 10px; outline: none;
+    }
+    .forgot{ width: 100%; text-align: center; margin-top: 80px;
+         padding-bottom: 40px;
+    }
+
+    footer{
+        text-align: center;
+    }
+
+    
+  </style>
+</head>
+
+<body>
+    <div class="container">
+    <header>
+        <div>
+            <h1>Welcome Back</h1>
+            <p>Enter your credential to login</p>
+        </div>
+    </header>
+    <main>
+        <form action="">
+            <input type="text" placeholder="Username" style="display: block;">
+            <input type="text" placeholder="Password" style="display: block;">
+            <button class="login-btn">Login</button>
+        </form>
+
+        <div class="forgot">Forgot Password?</div>
+    </main>
+    <footer>Don't have an account? <span><a href="">Sign Up</a></span>
+    </footer>
+</div>
+</body>
+
+</html>
