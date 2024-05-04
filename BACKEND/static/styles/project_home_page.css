@@ -18,7 +18,7 @@ a .create-post{
     border-radius: 20px;
     box-shadow: black 2px 2px 8px;
     position: fixed;
-    top:750px;
+    top:600px;
     left: 70px;
     cursor: pointer;
     transition: 0.9s;
@@ -220,7 +220,7 @@ header nav ul{
     
 }
 li a{
-    color: white;
+    color: rgb(175, 84, 84);
 }
 .about-me-button{
     width: 300px;
