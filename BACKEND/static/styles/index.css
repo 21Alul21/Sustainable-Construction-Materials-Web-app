@@ -115,11 +115,7 @@ aside:hover{
 landing page customisation
 */
 
-nav{
-  width: 200px;
-  
-   
-  }
+
 
   .intro-div{
 
@@ -127,7 +123,7 @@ display: flex;
   }
 
   nav{
-    margin-left: 50px;
+    margin-left: 450px;
     
     width: 35%;
   }
@@ -227,6 +223,9 @@ background-size: contain;
 
   .buttons-container{
     width: 80%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
   }
 
 .view-project, .about-me{
@@ -236,15 +235,58 @@ background-size: contain;
   
 }
 
+@media (max-width: 600px) {
 
 
-/*
-  <div class="about">
-            <h2><span> Augustine Alul </span></h2>
-            <br />
-            Civil Engineer and Software Engineering Student <br />
-            at ALX Africa
-          </div>
+ 
+  .container, .feature-about-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  header article{
+    display: flex;
+    flex-direction: column;
+
+  }
+  .intro-container{
+ 
+  
+    font-size: 22px;
+   
 
 
-          */
+  }
+
+  .intro-div{
+    display: block;
+  }
+  .buttons-container{
+   
+    padding-top: 100px;
+  
+    display: flex;
+    flex-direction: row;
+    padding-right: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+  }
+
+  main{
+    width: 100%;
+    margin: auto;
+
+  }
+  
+  .main_group{
+    background-size: cover;
+
+  }
+  
+  nav{
+    margin-left: 50px;
+  
+
+}
+
+}

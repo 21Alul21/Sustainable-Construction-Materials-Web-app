@@ -12,8 +12,10 @@
             
     
     </title>
+   
     
      <link rel="stylesheet" href="{{ url_for('static', filename='/styles/index.css') }}">
+   
 </head>
 
 <body>
@@ -30,15 +32,7 @@
               Construction Materials Suggestion <br />
               Web App
             </h1>
-          </div>
-          <nav>
-            <div class="buttons-container">
-              <a href="{{ url_for('about_me') }}"><button class="about-me">About the author</button></a> 
-             <a href="{{ url_for('home') }}"><button class="view-project">view project</button></a>
-            </div>
-          </nav>
-        </div>
-        <p
+            <p
           style="
             font-size: 18px;
             padding: 10px;
@@ -49,8 +43,19 @@
           Impacting the environment through the promotion of sustainable
           materials usage...
         </p>
+          </div>
+          
+        </div>
       </article>
+
+      
     </header>
+    <nav>
+      <div class="buttons-container">
+        <a href="{{ url_for('about_me') }}"><button class="about-me">About the author</button></a> 
+       <a href="{{ url_for('home') }}"><button class="view-project">view project</button></a>
+      </div>
+    </nav>
     <div class="container">
       <main>
         <div main_group>
@@ -130,6 +135,6 @@
       </div>
     </div>
 
-    
+ 
 </body>
 </html>

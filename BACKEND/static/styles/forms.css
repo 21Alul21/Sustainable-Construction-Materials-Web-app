@@ -114,11 +114,13 @@ border: none;
 
 /* media querry */
 
-@media (max-width: 500px){
-    body{
-        background-color: red;
-        color: red;
+@media (max-width: 600px){
+   header nav ul{
+       margin-left: 50px; 
+       display: flex;
+       flex-direction: row;
     }
-
+    
+}
 
 /* media querry */

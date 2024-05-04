@@ -103,3 +103,25 @@ top: -400px;
     color: white;
     margin-left:10px ;
 }
+
+@media (max-width: 600px) {
+    .container{
+        display: block;
+        border: none;
+    }
+
+    main{
+        width:80%;
+        
+        padding: 0px;
+    }
+
+    body{
+        border: none;
+    }
+
+    .links{
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+}
