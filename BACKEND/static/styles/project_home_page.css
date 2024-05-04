@@ -18,7 +18,7 @@ a .create-post{
     border-radius: 20px;
     box-shadow: black 2px 2px 8px;
     position: fixed;
-    top:600px;
+    top:450px;
     left: 70px;
     cursor: pointer;
     transition: 0.9s;
