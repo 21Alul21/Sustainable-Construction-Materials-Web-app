@@ -14,7 +14,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
